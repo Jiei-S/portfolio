@@ -36,7 +36,7 @@ const WORKS = [
     title: 'ポートフォリオ',
     comment: '本サイトです。自身のスキルや個人で開発したプロダクトをまとめております。',
     tags: [WORD.sass, WORD.react],
-    pathGit: 'https://j-kimagure-it-blog.com',
+    pathGit: 'https://jiei-s.github.io/portfolio',
   },
   {
     imgPath: WorksTrainLine,
