@@ -1,0 +1,239 @@
+
+/* ---------- Util ---------- */
+$blue-color: #3b9ef7;
+$gray-color: #dddddd;
+$white-color: #ffffff;
+$black-color: #2f3542;
+
+/* mixin */
+@mixin content-position-center($property) {
+    max-width: $property;
+    margin: 0 auto;
+}
+
+@mixin circle($property) {
+    width: $property;
+    height: $property;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+/* extend */
+%flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+%header-footer {
+    @extend %flex-wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+%panel-item {
+    max-width: 300px;
+    margin: 30px 10px;
+}
+
+/* ---------- Base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1.8;
+    font-size: 16px;
+    color: $black-color;
+}
+
+h1 {
+    font-size: 1.4rem;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    padding: 0 65px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+h2:before,
+h2:after {
+  position: absolute;
+  top: calc(50% - 3px);
+  width: 50px;
+  height: 6px;
+  content: '';
+  border-top: solid 2px $black-color;
+}
+
+h2:before {
+  left: 0;
+}
+
+h2:after {
+  right: 0;
+}
+
+h3 {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+li {
+    list-style: none;
+}
+
+.external-links {
+    @extend %flex-wrap;
+
+    li {
+        margin: 10px 0;
+    }
+}
+
+a {
+    padding: 0 10px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, $blue-color 50%);
+    background-position: 0 0;
+    background-size: 200% auto;
+    transition: .3s;
+    text-decoration: none;
+    color: $black-color;
+}
+  
+a:hover {
+    background-position: -100% 0;
+    color: #fff;
+}
+
+/* ---------- Header ---------- */
+.header {
+    position: fixed;
+    width: 100%;
+    background-color: $white-color;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-color;
+    z-index: 99;
+
+    &__inner {
+        @include content-position-center(1000px);
+        @extend %header-footer;
+    }
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    background-color: $black-color;
+    color: $white-color;
+
+    &__inner {
+        @include content-position-center(1000px);
+        @extend %header-footer;
+
+        a {
+            color: $white-color;
+        }
+    }
+}
+
+/* ---------- Profile ---------- */
+.profile {
+    @include content-position-center(375px);
+    padding: 100px 0 60px 0;
+    text-align: center;
+
+    img {
+        @include circle(150px);
+    }
+
+    &__name {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+}
+
+/* ---------- SkillWorks ---------- */
+.skill-works {
+    border-top: 1px solid $gray-color;
+    border-bottom: 1px solid $gray-color;
+
+    &__tab {
+        display: flex;
+        justify-content: center;
+        background-color: $black-color;
+        padding: 20px 0;
+        border-bottom: 1px solid $gray-color;
+
+        div {
+            @include circle(80px);
+            position: relative;
+            margin: 0 3rem;
+            font-size: 1.4rem;
+            color: $gray-color;
+            cursor: pointer;
+
+            span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 1rem;
+            }
+        }
+
+        .active {
+            background-color: $blue-color;
+            color: $white-color;
+        }
+    }
+
+    &__panel {
+        @include content-position-center(1000px);
+        margin: 50px auto;
+        text-align: center;
+
+        &-items {
+            @extend %flex-wrap;
+            justify-content: space-around;
+            margin: 20px 0 50px;
+
+            .skill {
+                @extend %panel-item;
+
+                svg {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+
+            .work {
+                @extend %panel-item;
+
+                img {
+                    width: 100%;
+                }
+
+                &__tags,
+                &__links {
+                    @extend %flex-wrap;
+                    margin: 10px 0;
+
+                    li {
+                        margin:0 10px 10px 0;
+                    }
+
+                    .tag {
+                        background-color: $gray-color;
+                        padding: 2px 6px;
+                        border-radius: 5px;
+                        font-size: .8rem;
+                    }
+                }
+            }
+        }
+    }
+}
